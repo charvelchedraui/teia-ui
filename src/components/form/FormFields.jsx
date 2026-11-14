@@ -21,6 +21,7 @@ import { useUserStore } from '@context/userStore'
 import { shallow } from 'zustand/shallow'
 import { TagSuggestions } from '@components/tag-suggestions'
 import { appendTag } from '@utils/tag-suggestions.mjs'
+import { MintFlagHint } from './MintFlagHint'
 
 const FieldError = memo(({ error, text }) => {
   const classes = classNames({
@@ -145,22 +146,27 @@ export const FormFields = ({ value, field, error, register, control }) => {
       )
     case 'checkbox':
       return (
-        <Controller
-          control={control}
-          defaultValue={field.defaultValue}
-          name={name}
-          rules={field.rules}
-          render={({ field: { onChange, value, name, ref } }) => (
-            <Checkbox
-              ref={ref}
-              className={styles.field}
-              label={field.label}
-              defaultValue={field.defaultValue}
-              checked={value}
-              onCheck={(v) => onChange(v)}
-            />
+        <>
+          <Controller
+            control={control}
+            defaultValue={field.defaultValue}
+            name={name}
+            rules={field.rules}
+            render={({ field: { onChange, value, name, ref } }) => (
+              <Checkbox
+                ref={ref}
+                className={styles.field}
+                label={field.label}
+                defaultValue={field.defaultValue}
+                checked={value}
+                onCheck={(v) => onChange(v)}
+              />
+            )}
+          />
+          {(name === 'nsfw' || name === 'photosensitive') && (
+            <MintFlagHint flag={name} />
           )}
-        />
+        </>
       )
 
     case 'file':
