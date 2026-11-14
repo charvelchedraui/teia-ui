@@ -217,6 +217,22 @@ export const Settings = () => {
               label={'Hide banner for last announcement'}
             />
           )}
+          <Line />
+          <p>
+            <strong>Backup your NFTs</strong>
+          </p>
+          <p>
+            <a
+              className={styles.external_link}
+              href="https://porcupin.xyz/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Porcupin
+            </a>{' '}
+            is a self-hosted backup node that keeps your Tezos NFT files pinned
+            on IPFS.
+          </p>
         </div>
       </div>
     </Page>
